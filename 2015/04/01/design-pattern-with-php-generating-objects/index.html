@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Design Pattern with PHP For Generating Objects"/>
+
+
+
+
+  <meta name="keywords" content="Design Pattern, ShuleiLee's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="ShuleiLee's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.9.0" />
+
+
+
+<link rel="canonical" href="http://shulei.li/2015/04/01/design-pattern-with-php-generating-objects/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.9.0" />
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"title":"ShuleiLee's Blog","subtitle":"","description":"","author":"shuleilee","language":"en","timezone":"","url":"http://shulei.li","root":"/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"pretty_urls":{"trailing_index":true,"trailing_html":true},"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":{"enable":true,"field":"site","exclude":""},"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":"","wrap":true,"hljs":false,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","use_date_for_updated":false,"per_page":10,"pagination_dir":"page","theme":{"color":"Cobalt Blue"},"server":{"port":4000,"log":false,"compress":false,"header":true,"cache":false},"deploy":{"type":"git","repo":"https://github.com/kiddlee/kiddlee.github.io.git","branch":"master"},"ignore":null,"meta_generator":true,"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"include":null,"exclude":null,"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true,"sanitizeUrl":false,"headerIds":true},"since":2015,"favicon":"/favicon.ico","rss":"default","menu":{"Home":"/","Archives":"/archives","Tags":"/tags","Categories":"/categories","About":"/about"},"toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"shulei.lee@gmail.com","stack-overflow":null,"twitter":"kiddlee","facebook":"shulei.lee@gmail.com","linkedin":null,"google":null,"github":"https://github.com/kiddlee","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":null,"app_key":null},"baidu_analytics":null,"baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
+</script>
+
+    <title> Design Pattern with PHP: Generating Objects - ShuleiLee's Blog </title>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">ShuleiLee's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">ShuleiLee's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Design Pattern with PHP: Generating Objects
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-04-01
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Design-Pattern/">Design Pattern</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建型模式"><span class="toc-text">创建型模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单件模式"><span class="toc-text">单件模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂方法模式"><span class="toc-text">工厂方法模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#抽象工厂模式"><span class="toc-text">抽象工厂模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型模式"><span class="toc-text">原型模式</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h2><p>创建型模式抽象了实例化过程。它们帮助一个系统独立于如何创建、组合和表示它的那 些对象。一个类创建型模式使用继承改变被实例化的类,而一个对象创建型模式将实例化委 托给另一个对象。</p>
+<ul>
+<li>单例(Singleton)模式：生成一个且只生成一个对象实例的特殊类</li>
+<li>工厂方法模式(Factory Method)：构建创建者类的继承层次</li>
+<li>抽象工厂模式(Abstract Factory)：功能相关产品的创建</li>
+<li>原型模式(Prototype)：使用克隆生成对象</li>
+</ul>
+<h2 id="单件模式"><a href="#单件模式" class="headerlink" title="单件模式"></a>单件模式</h2><ol>
+<li>意图：保证一个类仅有一个实例,并提供一个访问它的全局访问点。</li>
+<li>动机：我们怎么样才能保证一个类只有一个实例并且这个实例易于被访问呢?一个全局变量使 得一个对象可以被访问,但它不能防止你实例化多个对象。<br>一个更好的办法是,让类自身负责保存它的唯一实例。这个类可以保证没有其他实例可 以被创建(通过截取创建新对象的请求),并且它可以提供一个访问该实例的方法。</li>
+<li>实现：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;env&#x2F;php</span><br><span class="line">&lt;?php</span><br><span class="line">class Preferences &#123;</span><br><span class="line">    private $props &#x3D; array();</span><br><span class="line">    private static $instance;</span><br><span class="line"></span><br><span class="line">    private function __construct() &#123; &#125;</span><br><span class="line"></span><br><span class="line">    public static function getInstance() &#123;</span><br><span class="line">        if ( empty( self::$instance ) ) &#123;</span><br><span class="line">            self::$instance &#x3D; new Preferences();</span><br><span class="line">        &#125;</span><br><span class="line">        return self::$instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function setProperty( $key, $val ) &#123;</span><br><span class="line">        $this-&gt;props[$key] &#x3D; $val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getProperty( $key ) &#123;</span><br><span class="line">        return $this-&gt;props[$key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$pref &#x3D; Preferences::getInstance();</span><br><span class="line">$pref-&gt;setProperty( &#39;name&#39;, &#39;matt&#39; );</span><br><span class="line"></span><br><span class="line">unset( $pref ); &#x2F;&#x2F; remove the reference</span><br><span class="line"></span><br><span class="line">$pref2 &#x3D; Preferences::getInstance();</span><br><span class="line">print $pref2-&gt;getProperty( &#39;name&#39; ) .&quot;\n&quot;; &#x2F;&#x2F; demonstrate value is not lost</span><br></pre></td></tr></table></figure>
+
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><ol>
+<li>意图：定义一个用于创建对象的接口,让子类决定实例化哪一个类。 Factory Method使一个类的实例化延迟到其子类。</li>
+<li>动机：框架使用抽象类定义和维护对象之间的关系。这些对象的创建通常也由框架负责。例如系统编码转换的工具，提供Xml输出格式。</li>
+<li>实现：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;env&#x2F;php</span><br><span class="line">&lt;?php</span><br><span class="line">abstract class ApptEncoder &#123;</span><br><span class="line">    abstract function encode();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class XmlApptEncoder extends ApptEncoder &#123;</span><br><span class="line">    function encode() &#123;</span><br><span class="line">        return &quot;Appointment data encode in Xml format\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract class CommsManager &#123;</span><br><span class="line">    abstract function getHeaderText();</span><br><span class="line">    abstract function getApptEncoder();</span><br><span class="line">    abstract function getFooterText();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class XmlCommsManager extends CommsManager &#123;</span><br><span class="line">    function getHeaderText() &#123;</span><br><span class="line">        return &quot;Xml header\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getApptEncoder() &#123;</span><br><span class="line">        return new XmlApptEncoder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getFooterText() &#123;</span><br><span class="line">        return &quot;Xml footer\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj &#x3D; new XmlCommsManager();</span><br><span class="line">print $obj-&gt;getHeaderText();</span><br><span class="line">print $obj-&gt;getApptEncoder()-&gt;encode();</span><br><span class="line">print $obj-&gt;getFooterText();</span><br></pre></td></tr></table></figure>
+
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><ol>
+<li>意图：提供一个创建一系列相关或相互依赖对象的接口,而无需指定它们具体的类。</li>
+<li>动机：系统要提示多种转码方式，如Xml和Json</li>
+<li>实现：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;env&#x2F;php</span><br><span class="line">&lt;?php</span><br><span class="line">abstract class ApptEncoder &#123;</span><br><span class="line">    abstract function encode();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class XmlApptEncoder extends ApptEncoder &#123;</span><br><span class="line">    function encode() &#123;</span><br><span class="line">        return &quot;Appointment data encoded in XmlApptEnder format\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class JsonApptEncoder extends ApptEncoder &#123;</span><br><span class="line">    function encode() &#123;</span><br><span class="line">        return &quot;Appointment data encoded in JsonApptEnder format\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">abstract class CommsManager &#123;</span><br><span class="line">    abstract function getHeaderText();</span><br><span class="line">    abstract function getApptEncoder();</span><br><span class="line">    abstract function getTtdEncoder();</span><br><span class="line">    abstract function getContactEncoder();</span><br><span class="line">    abstract function getFooterText();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class XmlCommsManager extends CommsManager &#123;</span><br><span class="line">    function getHeaderText() &#123;</span><br><span class="line">        return &quot;Xml header\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getApptEncoder() &#123;</span><br><span class="line">        return new XmlApptEncoder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getTtdEncoder() &#123;</span><br><span class="line">        return new XmlTtdEncoder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getContactEncoder() &#123;</span><br><span class="line">        return new XmlContactEncoder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getFooterText() &#123;</span><br><span class="line">        return &quot;Xml footer\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class JsonCommsManager extends CommsManager &#123;</span><br><span class="line">    function getHeaderText() &#123;</span><br><span class="line">        return &quot;Json header\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getApptEncoder() &#123;</span><br><span class="line">        return new JsonApptEncoder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getTtdEncoder() &#123;</span><br><span class="line">        return new JsonTtdEncoder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getContactEncoder() &#123;</span><br><span class="line">        return new JsonContactEncoder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getFooterText() &#123;</span><br><span class="line">        return &quot;Json footer\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj &#x3D; new XmlCommsManager();</span><br><span class="line">print $obj-&gt;getHeaderText();</span><br><span class="line">print $obj-&gt;getApptEncoder()-&gt;encode();</span><br><span class="line">print $obj-&gt;getFooterText();</span><br></pre></td></tr></table></figure>
+
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><ol>
+<li>意图：用原型实例指定创建对象的种类,并且通过拷贝这些原型创建新的对象。</li>
+<li>动机：在一个游戏中需要实现两个星球（地球&amp;潘多拉）。两个星球都有海洋、土地、森林。</li>
+<li>实现：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;env&#x2F;php</span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">class Sea &#123;&#125;</span><br><span class="line">class EarthSea extends Sea &#123;&#125;</span><br><span class="line">class MarsSea extends Sea &#123;&#125;</span><br><span class="line"></span><br><span class="line">class Plains &#123;&#125;</span><br><span class="line">class EarthPlains extends Plains &#123;&#125;</span><br><span class="line">class MarsPlains extends Plains &#123;&#125;</span><br><span class="line"></span><br><span class="line">class Forest &#123;&#125;</span><br><span class="line">class EarthForest extends Forest &#123;&#125;</span><br><span class="line">class MarsForest extends Forest &#123;&#125;</span><br><span class="line"></span><br><span class="line">class TerrainFactory &#123;</span><br><span class="line">    private $sea;</span><br><span class="line">    private $forest;</span><br><span class="line">    private $plains;</span><br><span class="line"></span><br><span class="line">    function __construct( Sea $sea, Plains $plains, Forest $forest ) &#123;</span><br><span class="line">        $this-&gt;sea &#x3D; $sea;</span><br><span class="line">        $this-&gt;plains &#x3D; $plains;</span><br><span class="line">        $this-&gt;forest &#x3D; $forest;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getSea( ) &#123;</span><br><span class="line">        return clone $this-&gt;sea;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getPlains( ) &#123;</span><br><span class="line">        return clone $this-&gt;plains;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getForest( ) &#123;</span><br><span class="line">        return clone $this-&gt;forest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$factory &#x3D; new TerrainFactory( new EarthSea(),</span><br><span class="line">    new EarthPlains(),</span><br><span class="line">    new EarthForest() );</span><br><span class="line">print_r( $factory-&gt;getSea() );</span><br><span class="line">print_r( $factory-&gt;getPlains() );</span><br><span class="line">print_r( $factory-&gt;getForest() );</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://shulei.li">shuleilee</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://shulei.li/2015/04/01/design-pattern-with-php-generating-objects/">http://shulei.li/2015/04/01/design-pattern-with-php-generating-objects/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Design-Pattern/">Design Pattern</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/04/02/design-pattern-with-php-Patterns-for-Flexible-Object-Programming/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Design Pattern with PHP: Patterns for Flexible Object Programming</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/03/30/Vim-commands/">
+        <span class="next-text nav-default">Vim Commands</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:shulei.lee@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="/kiddlee" class="iconfont icon-twitter" title="twitter"></a>
+        
+      
+    
+      
+        
+          <a href="/shulei.lee@gmail.com" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiddlee" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">shuleilee</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.9.0"></script>
+
+  </body>
+</html>

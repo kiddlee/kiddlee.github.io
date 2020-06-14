@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Design Pattern with PHP For Performing and Representing Tasks"/>
+
+
+
+
+  <meta name="keywords" content="Design Pattern, ShuleiLee's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="ShuleiLee's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.9.0" />
+
+
+
+<link rel="canonical" href="http://shulei.li/2015/04/08/design-pattern-with-php-Performing-and-Representing-Tasks/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.9.0" />
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"title":"ShuleiLee's Blog","subtitle":"","description":"","author":"shuleilee","language":"en","timezone":"","url":"http://shulei.li","root":"/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"pretty_urls":{"trailing_index":true,"trailing_html":true},"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":{"enable":true,"field":"site","exclude":""},"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":"","wrap":true,"hljs":false,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","use_date_for_updated":false,"per_page":10,"pagination_dir":"page","theme":{"color":"Cobalt Blue"},"server":{"port":4000,"log":false,"compress":false,"header":true,"cache":false},"deploy":{"type":"git","repo":"https://github.com/kiddlee/kiddlee.github.io.git","branch":"master"},"ignore":null,"meta_generator":true,"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"include":null,"exclude":null,"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true,"sanitizeUrl":false,"headerIds":true},"since":2015,"favicon":"/favicon.ico","rss":"default","menu":{"Home":"/","Archives":"/archives","Tags":"/tags","Categories":"/categories","About":"/about"},"toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"shulei.lee@gmail.com","stack-overflow":null,"twitter":"kiddlee","facebook":"shulei.lee@gmail.com","linkedin":null,"google":null,"github":"https://github.com/kiddlee","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":null,"app_key":null},"baidu_analytics":null,"baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
+</script>
+
+    <title> Design Pattern with PHP: Performing and Representing Tasks - ShuleiLee's Blog </title>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">ShuleiLee's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">ShuleiLee's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Design Pattern with PHP: Performing and Representing Tasks
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-04-08
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Design-Pattern/">Design Pattern</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#行为模式"><span class="toc-text">行为模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解释器模式"><span class="toc-text">解释器模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#策略模式"><span class="toc-text">策略模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式"><span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问者模式"><span class="toc-text">访问者模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令模式"><span class="toc-text">命令模式</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="行为模式"><a href="#行为模式" class="headerlink" title="行为模式"></a>行为模式</h2><p>行为模式涉及到算法和对象间职责的分配。行为模式不仅描述对象或类的模式,还描述 它们之间的通信模式。</p>
+<ul>
+<li>解释器(Interpreter)模式：构造一个可以用于创建脚本化应用的mini语言解释器。</li>
+<li>策略(Strategy)模式：在系统中定义算法并以它们自己的类型封装。</li>
+<li>观察者(Observer)模式：创建依赖关系，当有系统事件发生时通知观察者对象。</li>
+<li>访问者(Vistor)模式：在对象树的所有节点上应用操作。</li>
+<li>命令(Command)模式：创建可被保存和传送的命令对象。</li>
+</ul>
+<h2 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h2><ul>
+<li>意图：给定一个语言,定义它的文法的一种表示,并定义一个解释器,这个解释器使用该表示 来解释语言中的句子。</li>
+<li>动机：为高级用户提供一种领域语言（DSL —— Domain Specific Language，领域特定语言）可以使用户自己来扩展系统功能，但是又需要限制用户使用语言的权限，例如：用户输入”print file_get_content(‘/etc/passwd’)”，程序执行后会获得系统权限。</li>
+<li>实现：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!#&#x2F;bin&#x2F;env&#x2F;php</span><br></pre></td></tr></table></figure>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><ul>
+<li>意图：定义一系列的算法,把它们一个个封装起来, 并且使它们可相互替换。本模式使得算法可独 立于使用它的客户而变化。</li>
+<li>动机：</li>
+<li>实现：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!#&#x2F;bin&#x2F;env&#x2F;php</span><br></pre></td></tr></table></figure>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><ul>
+<li>意图：定义对象间的一种一对多的依赖关系 ,当一个对象的状态发生改变时 , 所有依赖于它的对象 都得到通知并被自动更新。</li>
+<li>动机：</li>
+<li>实现：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line">!#&#x2F;bin&#x2F;env&#x2F;php</span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">interface Observable &#123;</span><br><span class="line">    function attach( Observer $observer );</span><br><span class="line">    function detach( Observer $observer );</span><br><span class="line">    function notify();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Login implements Observable &#123;</span><br><span class="line">    private $observers &#x3D; array();</span><br><span class="line">    const LOGIN_USER_UNKNOWN &#x3D; 1;</span><br><span class="line">    const LOGIN_WRONG_PASS   &#x3D; 2;</span><br><span class="line">    const LOGIN_ACCESS       &#x3D; 3;</span><br><span class="line"></span><br><span class="line">    function attach( Observer $observer ) &#123;</span><br><span class="line">        $this-&gt;observers[] &#x3D; $observer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function detach( Observer $observer ) &#123;</span><br><span class="line">        &#x2F;&#x2F; &gt;&#x3D; php 5.3</span><br><span class="line">        &#x2F;&#x2F;$this-&gt;observers &#x3D; array_udiff( $this-&gt;observers, array( $observer ), </span><br><span class="line">        &#x2F;&#x2F;                function( $a, $b ) &#123; return ($a &#x3D;&#x3D;&#x3D; $b)?0:1; &#125; );</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; &lt; php 5.3</span><br><span class="line">        $this-&gt;observers &#x3D; array_udiff( $this-&gt;observers, array( $observer ), </span><br><span class="line">                        create_function( &#39;$a,$b&#39;, &#39;return ($a &#x3D;&#x3D;&#x3D; $b)?0:1;&#39;) );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function notify() &#123;</span><br><span class="line">        foreach ( $this-&gt;observers as $obs ) &#123;</span><br><span class="line">            $obs-&gt;update( $this );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function handleLogin( $user, $pass, $ip ) &#123;</span><br><span class="line">        switch ( rand(1,3) ) &#123;</span><br><span class="line">            case 1: </span><br><span class="line">                $this-&gt;setStatus( self::LOGIN_ACCESS, $user, $ip );</span><br><span class="line">                $ret &#x3D; true; break;</span><br><span class="line">            case 2:</span><br><span class="line">                $this-&gt;setStatus( self::LOGIN_WRONG_PASS, $user, $ip );</span><br><span class="line">                $ret &#x3D; false; break;</span><br><span class="line">            case 3:</span><br><span class="line">                $this-&gt;setStatus( self::LOGIN_USER_UNKNOWN, $user, $ip );</span><br><span class="line">                $ret &#x3D; false; break;</span><br><span class="line">        &#125;</span><br><span class="line">        $this-&gt;notify();</span><br><span class="line">        return $ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private function setStatus( $status, $user, $ip ) &#123;</span><br><span class="line">        $this-&gt;status &#x3D; array( $status, $user, $ip ); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getStatus() &#123;</span><br><span class="line">        return $this-&gt;status;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Observer &#123;</span><br><span class="line">    function update( Observable $observer );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract class LoginObserver implements Observer &#123;</span><br><span class="line">    private $login;</span><br><span class="line">    function __construct( Login $login ) &#123;</span><br><span class="line">        $this-&gt;login &#x3D; $login; </span><br><span class="line">        $login-&gt;attach( $this );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function update( Observable $observable ) &#123;</span><br><span class="line">        if ( $observable &#x3D;&#x3D;&#x3D; $this-&gt;login ) &#123;</span><br><span class="line">            $this-&gt;doUpdate( $observable );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    abstract function doUpdate( Login $login );</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">class SecurityMonitor extends LoginObserver &#123;</span><br><span class="line">    function doUpdate( Login $login ) &#123;</span><br><span class="line">        $status &#x3D; $login-&gt;getStatus(); </span><br><span class="line">        if ( $status[0] &#x3D;&#x3D; Login::LOGIN_WRONG_PASS ) &#123;</span><br><span class="line">            &#x2F;&#x2F; send mail to sysadmin </span><br><span class="line">            print __CLASS__.&quot;:\tsending mail to sysadmin\n&quot;; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class GeneralLogger  extends LoginObserver &#123;</span><br><span class="line">    function doUpdate( Login $login ) &#123;</span><br><span class="line">        $status &#x3D; $login-&gt;getStatus(); </span><br><span class="line">        &#x2F;&#x2F; add login data to log</span><br><span class="line">        print __CLASS__.&quot;:\tadd login data to log\n&quot;; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class PartnershipTool extends LoginObserver &#123;</span><br><span class="line">    function doUpdate( Login $login ) &#123;</span><br><span class="line">        $status &#x3D; $login-&gt;getStatus(); </span><br><span class="line">        &#x2F;&#x2F; check $ip address </span><br><span class="line">        &#x2F;&#x2F; set cookie if it matches a list</span><br><span class="line">        print __CLASS__.&quot;:\tset cookie if it matches a list\n&quot;; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$login &#x3D; new Login();</span><br><span class="line">new SecurityMonitor( $login );</span><br><span class="line">new GeneralLogger( $login );</span><br><span class="line">$pt &#x3D; new PartnershipTool( $login );</span><br><span class="line">$login-&gt;detach( $pt );</span><br><span class="line">for ( $x&#x3D;0; $x&lt;10; $x++ ) &#123;</span><br><span class="line">    $login-&gt;handleLogin( &quot;bob&quot;,&quot;mypass&quot;, &#39;158.152.55.35&#39; );</span><br><span class="line">    print &quot;\n&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h2><ul>
+<li>意图：表示一个作用于某对象结构中的各元素的操作。它使你可以在不改变各元素的类的前提 下定义作用于这些元素的新操作。</li>
+<li>动机：</li>
+<li>实现：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line">!#&#x2F;bin&#x2F;env&#x2F;php</span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">class UnitException extends Exception &#123;&#125;</span><br><span class="line"></span><br><span class="line">class TextDumpArmyVisitor extends ArmyVisitor &#123;</span><br><span class="line">    private $text&#x3D;&quot;&quot;;</span><br><span class="line"></span><br><span class="line">    function visit( Unit $node ) &#123;</span><br><span class="line">        $ret &#x3D; &quot;&quot;;</span><br><span class="line">        $pad &#x3D; 4*$node-&gt;getDepth();</span><br><span class="line">        $ret .&#x3D; sprintf( &quot;%&#123;$pad&#125;s&quot;, &quot;&quot; );</span><br><span class="line">        $ret .&#x3D; get_class($node).&quot;: &quot;;</span><br><span class="line">        $ret .&#x3D; &quot;bombard: &quot;.$node-&gt;bombardStrength().&quot;\n&quot;;</span><br><span class="line">        $this-&gt;text .&#x3D; $ret;</span><br><span class="line">    &#125;</span><br><span class="line">    function getText() &#123;</span><br><span class="line">        return $this-&gt;text;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class TaxCollectionVisitor extends ArmyVisitor &#123;</span><br><span class="line">    private $due&#x3D;0;</span><br><span class="line">    private $report&#x3D;&quot;&quot;;</span><br><span class="line"></span><br><span class="line">    function visit( Unit $node ) &#123;</span><br><span class="line">        $this-&gt;levy( $node, 1 );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function visitArcher( Archer $node ) &#123;</span><br><span class="line">        $this-&gt;levy( $node, 2 );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function visitCavalry( Cavalry $node ) &#123;</span><br><span class="line">        $this-&gt;levy( $node, 3 );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function visitTroopCarrierUnit( TroopCarrierUnit $node ) &#123;</span><br><span class="line">        $this-&gt;levy( $node, 5 );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private function levy( Unit $unit, $amount ) &#123;</span><br><span class="line">        $this-&gt;report .&#x3D; &quot;Tax levied for &quot;.get_class( $unit );</span><br><span class="line">        $this-&gt;report .&#x3D; &quot;: $amount\n&quot;;</span><br><span class="line">        $this-&gt;due +&#x3D; $amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getReport() &#123;</span><br><span class="line">        return $this-&gt;report;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getTax() &#123;</span><br><span class="line">        return $this-&gt;due;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract class ArmyVisitor  &#123;</span><br><span class="line">    abstract function visit( Unit $node );</span><br><span class="line"></span><br><span class="line">    function visitArcher( Archer $node ) &#123;</span><br><span class="line">        $this-&gt;visit( $node );</span><br><span class="line">    &#125;</span><br><span class="line">    function visitCavalry( Cavalry $node ) &#123;</span><br><span class="line">        $this-&gt;visit( $node );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function visitLaserCanonUnit( LaserCanonUnit $node ) &#123;</span><br><span class="line">        $this-&gt;visit( $node );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function visitTroopCarrierUnit( TroopCarrierUnit $node ) &#123;</span><br><span class="line">        $this-&gt;visit( $node );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function visitArmy( Army $node ) &#123;</span><br><span class="line">        $this-&gt;visit( $node );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract class Unit &#123;</span><br><span class="line">    protected $depth &#x3D; 0;</span><br><span class="line"></span><br><span class="line">    function getComposite() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    protected function setDepth( $depth ) &#123;</span><br><span class="line">        $this-&gt;depth&#x3D;$depth;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getDepth() &#123;</span><br><span class="line">        return $this-&gt;depth;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    abstract function bombardStrength();</span><br><span class="line"></span><br><span class="line">    function accept( ArmyVisitor $visitor ) &#123;</span><br><span class="line">        $method &#x3D; &quot;visit&quot;.get_class( $this );</span><br><span class="line">        $visitor-&gt;$method( $this );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Archer extends Unit &#123;</span><br><span class="line">    function bombardStrength() &#123;</span><br><span class="line">        return 4;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Cavalry extends Unit &#123;</span><br><span class="line">    function bombardStrength() &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class LaserCanonUnit extends Unit &#123;</span><br><span class="line">    function bombardStrength() &#123;</span><br><span class="line">        return 44;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract class CompositeUnit extends Unit &#123;</span><br><span class="line">    private $units &#x3D; array();</span><br><span class="line"></span><br><span class="line">    function getComposite() &#123;</span><br><span class="line">        return $this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function units() &#123;</span><br><span class="line">        return $this-&gt;units;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function removeUnit( Unit $unit ) &#123;</span><br><span class="line">        $units &#x3D; array();</span><br><span class="line">        foreach ( $this-&gt;units as $thisunit ) &#123;</span><br><span class="line">            if ( $unit !&#x3D;&#x3D; $thisunit ) &#123;</span><br><span class="line">                $units[] &#x3D; $thisunit;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        $this-&gt;units &#x3D; $units;</span><br><span class="line">    &#125;</span><br><span class="line">&#x2F;*</span><br><span class="line">    function accept( ArmyVisitor $visitor ) &#123;</span><br><span class="line">        $method &#x3D; &quot;visit&quot;.get_class( $this );</span><br><span class="line">        $visitor-&gt;$method( $this );</span><br><span class="line">        foreach ( $this-&gt;units as $thisunit ) &#123;</span><br><span class="line">            $thisunit-&gt;accept( $visitor );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">*&#x2F;</span><br><span class="line"></span><br><span class="line">    function accept( ArmyVisitor $visitor ) &#123;</span><br><span class="line">        parent::accept( $visitor );</span><br><span class="line">        foreach ( $this-&gt;units as $thisunit ) &#123;</span><br><span class="line">            $thisunit-&gt;accept( $visitor );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function addUnit( Unit $unit ) &#123;</span><br><span class="line">        foreach ( $this-&gt;units as $thisunit ) &#123;</span><br><span class="line">            if ( $unit &#x3D;&#x3D;&#x3D; $thisunit ) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        $unit-&gt;setDepth($this-&gt;depth+1);</span><br><span class="line">        $this-&gt;units[] &#x3D; $unit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class TroopCarrier extends CompositeUnit &#123;</span><br><span class="line"></span><br><span class="line">    function addUnit( Unit $unit ) &#123;</span><br><span class="line">        if ( $unit instanceof Cavalry ) &#123;</span><br><span class="line">            throw new UnitException(&quot;Can&#39;t get a horse on the vehicle&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        parent::addUnit( $unit );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function bombardStrength() &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Army extends CompositeUnit &#123;</span><br><span class="line"></span><br><span class="line">    function bombardStrength() &#123;</span><br><span class="line">        $ret &#x3D; 0;</span><br><span class="line">        foreach( $this-&gt;units() as $unit ) &#123;</span><br><span class="line">            $ret +&#x3D; $unit-&gt;bombardStrength();</span><br><span class="line">        &#125;</span><br><span class="line">        return $ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$main_army &#x3D; new Army();</span><br><span class="line">$main_army-&gt;addUnit( new Archer() );</span><br><span class="line">$main_army-&gt;addUnit( new LaserCanonUnit() );</span><br><span class="line">$main_army-&gt;addUnit( new Cavalry() );</span><br><span class="line"></span><br><span class="line">$textdump &#x3D; new TextDumpArmyVisitor();</span><br><span class="line">$main_army-&gt;accept( $textdump  );</span><br><span class="line">print $textdump-&gt;getText();</span><br><span class="line">$taxcollector &#x3D; new TaxCollectionVisitor();</span><br><span class="line">$main_army-&gt;accept( $taxcollector );</span><br><span class="line">print $taxcollector-&gt;getReport();</span><br><span class="line">print &quot;TOTAL: &quot;;</span><br><span class="line">print $taxcollector-&gt;getTax().&quot;\n&quot;;</span><br></pre></td></tr></table></figure>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><ul>
+<li>意图：将一个请求封装为一个对象,从而使你可用不同的请求对客户进行参数化;对请求排队或记录请求日志,以及支持可撤消的操作。</li>
+<li>动机：</li>
+<li>实现：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">!#&#x2F;bin&#x2F;env&#x2F;php</span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">class CommandNotFoundException extends Exception &#123;&#125;</span><br><span class="line"></span><br><span class="line">class CommandFactory &#123;</span><br><span class="line">    private static $dir &#x3D; &#39;commands&#39;;</span><br><span class="line"></span><br><span class="line">    static function getCommand( $action&#x3D;&#39;Default&#39; ) &#123;</span><br><span class="line">        if ( preg_match( &#39;&#x2F;\W&#x2F;&#39;, $action ) ) &#123;</span><br><span class="line">            throw new Exception(&quot;illegal characters in action&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        $class &#x3D; UCFirst(strtolower($action)).&quot;Command&quot;;  </span><br><span class="line">        $file &#x3D; self::$dir.DIRECTORY_SEPARATOR.&quot;$class.php&quot;;</span><br><span class="line">        if ( ! file_exists( $file ) ) &#123;</span><br><span class="line">            throw new CommandNotFoundException( &quot;could not find &#39;$file&#39;&quot; );</span><br><span class="line">        &#125;</span><br><span class="line">        require_once( $file );</span><br><span class="line">        if ( ! class_exists( $class ) ) &#123;</span><br><span class="line">            throw new CommandNotFoundException( &quot;no &#39;$class&#39; class located&quot; );</span><br><span class="line">        &#125;</span><br><span class="line">        $cmd &#x3D; new $class();</span><br><span class="line">        return $cmd;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Controller &#123;</span><br><span class="line">    private $context;</span><br><span class="line">    function __construct() &#123;</span><br><span class="line">        $this-&gt;context &#x3D; new CommandContext();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getContext() &#123;</span><br><span class="line">        return $this-&gt;context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function process() &#123;</span><br><span class="line">        $cmd &#x3D; CommandFactory::getCommand( $this-&gt;context-&gt;get(&#39;action&#39;) );</span><br><span class="line">        if ( ! $cmd-&gt;execute( $this-&gt;context ) ) &#123;</span><br><span class="line">            &#x2F;&#x2F; handle failure</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            &#x2F;&#x2F; success</span><br><span class="line">            &#x2F;&#x2F; dispatch view</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; ------------- helper stuff</span><br><span class="line">class User&#123;</span><br><span class="line">    private $name;</span><br><span class="line">    function __construct( $name ) &#123;</span><br><span class="line">        $this-&gt;name &#x3D; $name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Registry &#123;</span><br><span class="line">    static function getMessageSystem() &#123;</span><br><span class="line">        return new MessageSystem();</span><br><span class="line">    &#125;</span><br><span class="line">    static function getAccessManager() &#123;</span><br><span class="line">        return new AccessManager();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MessageSystem &#123;</span><br><span class="line">    function send( $mail, $msg, $topic ) &#123;</span><br><span class="line">        print &quot;sending $mail: $topic: $msg\n&quot;;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getError() &#123;</span><br><span class="line">        return &quot;move along now, nothing to see here&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class AccessManager &#123;</span><br><span class="line">    function login( $user, $pass ) &#123;</span><br><span class="line">        $ret &#x3D; new User( $user );</span><br><span class="line">        return $ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getError() &#123;</span><br><span class="line">        return &quot;move along now, nothing to see here&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class CommandContext &#123;</span><br><span class="line">    private $params &#x3D; array();</span><br><span class="line">    private $error &#x3D; &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    function __construct() &#123;</span><br><span class="line">        $this-&gt;params &#x3D; $_REQUEST;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function addParam( $key, $val ) &#123; </span><br><span class="line">        $this-&gt;params[$key]&#x3D;$val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function get( $key ) &#123; </span><br><span class="line">        return $this-&gt;params[$key];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setError( $error ) &#123;</span><br><span class="line">        $this-&gt;error &#x3D; $error;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getError() &#123;</span><br><span class="line">        return $this-&gt;error;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$controller &#x3D; new Controller();</span><br><span class="line">$context &#x3D; $controller-&gt;getContext();</span><br><span class="line">$context-&gt;addParam(&#39;action&#39;, &#39;feedback&#39; );</span><br><span class="line">$context-&gt;addParam(&#39;email&#39;, &#39;bob@bob.com&#39; );</span><br><span class="line">$context-&gt;addParam(&#39;topic&#39;, &#39;my brain&#39; );</span><br><span class="line">$context-&gt;addParam(&#39;msg&#39;, &#39;all about my brain&#39; );</span><br><span class="line">$controller-&gt;process();</span><br><span class="line">print $context-&gt;getError();</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://shulei.li">shuleilee</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://shulei.li/2015/04/08/design-pattern-with-php-Performing-and-Representing-Tasks/">http://shulei.li/2015/04/08/design-pattern-with-php-Performing-and-Representing-Tasks/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Design-Pattern/">Design Pattern</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/05/14/Install-oh-my-zsh-in-Mac/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Install oh my zsh in Mac</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/04/02/design-pattern-with-php-Patterns-for-Flexible-Object-Programming/">
+        <span class="next-text nav-default">Design Pattern with PHP: Patterns for Flexible Object Programming</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:shulei.lee@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="/kiddlee" class="iconfont icon-twitter" title="twitter"></a>
+        
+      
+    
+      
+        
+          <a href="/shulei.lee@gmail.com" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiddlee" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">shuleilee</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.9.0"></script>
+
+  </body>
+</html>

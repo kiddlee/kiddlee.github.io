@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="ubuntu内核升级"/>
+
+
+
+
+  <meta name="keywords" content="linux, ShuleiLee's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="ShuleiLee's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.9.0" />
+
+
+
+<link rel="canonical" href="http://shulei.li/2015/08/29/ubuntu内核升级/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.9.0" />
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"title":"ShuleiLee's Blog","subtitle":"","description":"","author":"shuleilee","language":"en","timezone":"","url":"http://shulei.li","root":"/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"pretty_urls":{"trailing_index":true,"trailing_html":true},"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":{"enable":true,"field":"site","exclude":""},"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":"","wrap":true,"hljs":false,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","use_date_for_updated":false,"per_page":10,"pagination_dir":"page","theme":{"color":"Cobalt Blue"},"server":{"port":4000,"log":false,"compress":false,"header":true,"cache":false},"deploy":{"type":"git","repo":"https://github.com/kiddlee/kiddlee.github.io.git","branch":"master"},"ignore":null,"meta_generator":true,"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"include":null,"exclude":null,"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true,"sanitizeUrl":false,"headerIds":true},"since":2015,"favicon":"/favicon.ico","rss":"default","menu":{"Home":"/","Archives":"/archives","Tags":"/tags","Categories":"/categories","About":"/about"},"toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"shulei.lee@gmail.com","stack-overflow":null,"twitter":"kiddlee","facebook":"shulei.lee@gmail.com","linkedin":null,"google":null,"github":"https://github.com/kiddlee","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":null,"app_key":null},"baidu_analytics":null,"baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
+</script>
+
+    <title> ubuntu内核升级 - ShuleiLee's Blog </title>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">ShuleiLee's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">ShuleiLee's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          ubuntu内核升级
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-08-29
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备"><span class="toc-text">准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装内核"><span class="toc-text">安装内核</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除旧内核文件"><span class="toc-text">删除旧内核文件</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>在一台Ubuntu机器上升级内核，步骤如下：</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li>先从<a href="http://www.kernel.org/" target="_blank" rel="noopener">kernel</a>网站上下载稳定版的内核</li>
+<li>拥有root权限</li>
+<li>将下载后的内核文件解压缩到/usr/src/目录下</li>
+<li>进入解压后的目录，如/usr/src/linux-4.1.6/</li>
+</ol>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ol>
+<li><p>运行：make mrproper。该命令的功能在于清除当前目录下残留的.config和.o文件，这些文件一般是以前编译时未清理而残留的。而对于第一次编译的代码来说，不存在这些残留文件，所以可以略过此步，但是如果该源代码以前被编译过，那么强烈建议执行此命令，否则后面可能会出现未知的问题。</p>
+</li>
+<li><p>配置编译选项：作为操作系统的内核，其内容和功能必然非常繁杂，包括处理器调度，内存管理，文件系统管理，进程通讯以及设备管理等等，而对于不同的硬件，其配置选项也不相同，所以在编译源代码之前必须设置编译选项。这一步应该是升级内核整个过程中最有技术含量的，因为要根据自己的需要正确选择yes or no需要对计算机方方面面的知识都有所了解。但是这里的选项实在是太多了，大概有几百项之多，而且很多选项不是很明白。简便的方法就是make menuconfig 或者make xconfig。我使用的是make menuconfig，但是前提条件是要装ncurses。</p>
+<ul>
+<li><p><a href="http://ftp.gnu.org/pub/gnu/ncurses/" target="_blank" rel="noopener">ncurses</a>下载，可以放到任何目录进行安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf ncurses&lt;version&gt;.tar.gz #解压缩并且释放 文件包</span><br><span class="line">cd ncurses&lt;version&gt; #进入解压缩的目录（注意版本）</span><br><span class="line">.&#x2F;configure #按照你的系统环境制作安装配置文件</span><br><span class="line">make #编译源代码并且编译NCURSES库</span><br><span class="line">su root #切换到root用户环境</span><br><span class="line">make install #安装编译好的NCURSES库</span><br></pre></td></tr></table></figure></li>
+<li><p>在make menuconfig过程中也会有一些选项需要你来设置 * , y, n 或者m，选择 * 表示选项中的内容被直接编入内核中，选择m表示选项中的内容不编入内核，而只是编成独立的module，用到时才调用。</p>
+</li>
+<li><p>ok， 在当前文件路径下，输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make menuconfig(或者用 make xconfig，我没有用)</span><br></pre></td></tr></table></figure></li>
+<li><p>根据菜单提示，选择编译配置选项，并保存配置文件为.config(也可以直接复制现有的.config文件)</p>
+</li>
+</ul>
+</li>
+<li><p>确定依赖性：根据以往的经验，这一步是必须的，但是这次编译的时候，系统提醒我没必须要执行这个命令：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make dep</span><br></pre></td></tr></table></figure>
+<p>如果用现有的.config文件，这里会有很多内核新增加的驱动和功能让你确认是否编入内核中，这个你就自己看着输入y/n/m/?吧！</p>
+</li>
+<li><p>清除编译中间文件</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make clean</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>执行这步前最好确认一下机器内存，我第一次实验，虚拟机内存只有512M，编译后出现内存不足的错误。后把内存调整至2G，升级过程顺利执行。</strong><br>5. 生成新内核就是把配置过程中，我们选中编入内核中的程序编译链接生产linux内核，输入命令：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make bzImage</span><br></pre></td></tr></table></figure></code></pre><ol start="6">
+<li><p>生成modules: 和上步差不多，就是把配置过程中，我们选中编成modules的程序编译链接成modules，输入命令：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make modules</span><br></pre></td></tr></table></figure></li>
+<li><p>安装modules: 就是把刚才编译生产的modules拷到系统文件夹下，以供新内核调用。输入命令：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make modules_install</span><br></pre></td></tr></table></figure>
+<p>一切都自动做好了。</p>
+</li>
+<li><p>建立要载入ramdisk的映像文件: 如果linux系统安装在scsi磁盘上，这步是必须的，否则可以跳过。我的linux是装在vmware上的，用的是虚拟的scsi磁盘，所以必须 要这一步。输入命令：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkinitramfs -o &#x2F;boot&#x2F;initrd-linux3.3.4.img 3.3.4</span><br></pre></td></tr></table></figure>
+<p>如果你的linux不是ubuntu，而是其他的发行版本，那么使用的命令可能不是mkinitramfs，而是mkinitrd，但功能和用法类似。</p>
+</li>
+</ol>
+<h2 id="安装内核"><a href="#安装内核" class="headerlink" title="安装内核"></a>安装内核</h2><ol>
+<li><p>安装内核</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>此时系统会把linux内核的镜像文件还有System.map考入到/boot下，然后会自动生成引导菜单。</p>
+</li>
+<li><p>配置grub引导程序</p>
+</li>
+</ol>
+<p>既然新的内核编译并安装好了，那么我们要配置系统的引导程序用新内核正确引导，这一步我没做任何修改。默认是从新内核镜像启动系统。</p>
+<ol start="3">
+<li>敲下reboot，系统启动后，从grub菜单中选中新内核引导linux，怎么样，系统启动的鼓声响了吧！进入后用uname -a看看是否新内核。</li>
+</ol>
+<h2 id="删除旧内核文件"><a href="#删除旧内核文件" class="headerlink" title="删除旧内核文件"></a>删除旧内核文件</h2><ol>
+<li>查看一下当前内核版本：uname -a</li>
+<li>查看一下当前系统内的所有内核文件：dpkg –get-selections|grep linux </li>
+<li>删除内核文件：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove linux-image-3.2.0-24*</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>另外一条命令： </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude purge ~ilinux-image-.*\(\!&#39;uname -r&#39;\)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://shulei.li">shuleilee</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://shulei.li/2015/08/29/ubuntu%E5%86%85%E6%A0%B8%E5%8D%87%E7%BA%A7/">http://shulei.li/2015/08/29/ubuntu%E5%86%85%E6%A0%B8%E5%8D%87%E7%BA%A7/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/linux/">linux</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/09/01/mysql%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">mysql存储引擎</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/08/26/phar/">
+        <span class="next-text nav-default">phar</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:shulei.lee@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="/kiddlee" class="iconfont icon-twitter" title="twitter"></a>
+        
+      
+    
+      
+        
+          <a href="/shulei.lee@gmail.com" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiddlee" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">shuleilee</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.9.0"></script>
+
+  </body>
+</html>
